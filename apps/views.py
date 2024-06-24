@@ -29,5 +29,11 @@ class ProfileView(TemplateView):
     template_name = 'user/profile.html'
 
 
+
+
+
+    
+
+
 class SettingsView(TemplateView):
     template_name = 'user/settings.html'
