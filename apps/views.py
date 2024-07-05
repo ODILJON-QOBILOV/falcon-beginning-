@@ -1,6 +1,13 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView
-from .models import Product
+from django.shortcuts import render, redirect
+from django.views.generic import (
+    TemplateView, CreateView,
+    View, FormView, DetailView,
+    ListView, CreateView
+)
+from apps.models import User, Product
+from apps.forms import UserRegisterForm, UserLoginForm
+from django.contrib.auth import login, logout
+
 from datetime import datetime
 
 # Create your views here.
@@ -29,11 +36,35 @@ class ProfileView(TemplateView):
     template_name = 'user/profile.html'
 
 
-
-
-
-    
-
-
 class SettingsView(TemplateView):
     template_name = 'user/settings.html'
+
+
+class SignupView(CreateView):
+    model = User
+    form_class = UserRegisterForm
+    template_name = 'auth/register.html'
+    success_url = "/"
+
+class UserLoginView(FormView):
+    form_class = UserLoginForm
+    template_name = 'auth/login.html'
+    success_url = '/'
+
+    def form_valid(self, form):
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+
+        user = User.objects.filter(username=username).first()
+
+        if user is not None and user.check_password(password):
+            login(self.request, user)
+            return redirect('/')
+        
+        return super().form_valid(form)
+    
+
+class UserLogoutView(View):
+    def get(self, request):
+        logout(self.request)
+        return redirect('login')

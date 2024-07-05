@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import timedelta
 from django.utils.timezone import now
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
@@ -50,7 +51,16 @@ class ProductImage(BaseModel):
 
 
 
-class User(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    password = models.CharField(max_length=100)
+class User(AbstractUser):
+    class Type(models.TextChoices):
+        USERS = "users", 'users'
+        ADMIN = 'admin', 'admin'
+        OPERATOR = 'operator', 'operator'
+        MANAGER = 'manager', 'Manager'
+    
+    type = models.CharField(max_length=255, choices=Type.choices, default=Type.USERS)
+    image = models.ImageField(upload_to='user/', blank=True, null=True)
+    intro = models.TextField(blank=True, null=True)
+    region = models.CharField(max_length=255, blank=True, null=True)
+    city = models.CharField(max_length=255, blank=True, null=True)
+    street = models.CharField(max_length=255, blank=True, null=True)
