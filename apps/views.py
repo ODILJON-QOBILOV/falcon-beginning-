@@ -1,14 +1,16 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import (
     TemplateView, CreateView,
     View, FormView, DetailView,
     ListView, CreateView
 )
-from apps.models import User, Product
+from apps.models import User, Product, WishList
 from apps.forms import UserRegisterForm, UserLoginForm
 from django.contrib.auth import login, logout
 
 from datetime import datetime
+
 
 # Create your views here.
 
@@ -20,11 +22,10 @@ def index(request):
 
 class ProductListView(ListView):
     datetime = datetime.now()
-    model = Product 
+    model = Product
     template_name = 'product/products.html'
     context_object_name = 'products'
     ordering = ['-id']
-
 
 
 class ProductDetailView(DetailView):
@@ -46,6 +47,7 @@ class SignupView(CreateView):
     template_name = 'auth/register.html'
     success_url = "/"
 
+
 class UserLoginView(FormView):
     form_class = UserLoginForm
     template_name = 'auth/login.html'
@@ -60,11 +62,32 @@ class UserLoginView(FormView):
         if user is not None and user.check_password(password):
             login(self.request, user)
             return redirect('/')
-        
+
         return super().form_valid(form)
-    
+
 
 class UserLogoutView(View):
     def get(self, request):
         logout(self.request)
         return redirect('login')
+
+
+class WishlistTemplateView(TemplateView):
+    template_name = 'product/shopping-cart.html'
+
+class WishListView(LoginRequiredMixin, View):
+    def get(self, reques, *args, **kwargs):
+        user = self.request.user
+        pk = kwargs.get('pk')
+        product = Product.objects.filter(id=pk).first()
+        if user and pk:
+            wishlist = WishList.objects.filter(product=product).exists()
+            if not wishlist:
+                WishList.objects.create(
+                    user=user,
+                    product=product
+                )
+            else:
+                wishlist = WishList.objects.filter(product=product).first()
+                wishlist.delete()
+        return  redirect('/')

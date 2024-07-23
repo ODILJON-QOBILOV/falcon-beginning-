@@ -1,13 +1,13 @@
 from django.contrib import admin
-from .models import Product, Category, ProductImage
+from .models import Product, Category, ProductImage, WishList
+
 # Register your models here.
+
 
 
 class ProductImageInline(admin.StackedInline):
     model = ProductImage
     extra = 1
-
-
 
 
 @admin.register(Product)
@@ -26,9 +26,6 @@ class ProductImageAdmin(admin.ModelAdmin):
     list_display = ('product',)
 
 
-
-
-
-
-
-    
+@admin.register(WishList)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['user']
