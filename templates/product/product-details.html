@@ -47,7 +47,8 @@
                 <div class="col-12">
                   <div class="overflow-hidden mt-4">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                      <li class="nav-item"><a class="nav-link px-2 px-md-3" id="specifications-tab" data-bs-toggle="tab" href="#tab-specifications" role="tab" aria-controls="tab-specifications" aria-selected="false">Specifications</a></li>
+<!--                      <li class="nav-item"><a class="nav-link px-2 px-md-3" id="specifications-tab" data-bs-toggle="tab" href="#tab-specifications" role="tab" aria-controls="tab-specifications" aria-selected="false">Form</a></li>-->
+                      <li class="nav-item"><a class="nav-link px-2 px-md-3" id="specifications-tab" data-bs-toggle="tab" href="#tab-specifications" role="tab" aria-controls="tab-specifications" aria-selected="true">Specifications</a></li>
                       <li class="nav-item"><a class="nav-link px-2 px-md-3" id="reviews-tab" data-bs-toggle="tab" href="#tab-reviews" role="tab" aria-controls="tab-reviews" aria-selected="false">Reviews</a></li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -106,4 +107,177 @@
               </div>
             </div>
           </div>
+<!--<style>-->
+<!--@import url('https://fonts.googleapis.com/css?family=Roboto');-->
+<!--@import url('https://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css');-->
+
+
+<!--      body {-->
+<!--           font: 14px/1 'Roboto', sans-serif;-->
+<!--           color: #fff;-->
+<!--           background: url('https://codepen.io/images/classy_fabric.png') #333;-->
+<!--           -webkit-font-smoothing: antialiased;-->
+<!--      }-->
+
+<!--      button,-->
+<!--      input,-->
+<!--      select,-->
+<!--      textarea {-->
+<!--            font-family: inherit;-->
+<!--            font-size: 100%;-->
+<!--            vertical-align: baseline;-->
+<!--            border: 0;-->
+<!--            outline: 0;-->
+<!--            color: #fff;-->
+<!--      }-->
+
+<!--      button::-moz-focus-inner,-->
+<!--      input::-moz-focus-inner {-->
+<!--            border: 0;-->
+<!--            padding: 0;-->
+<!--      }-->
+
+<!--      textarea {-->
+<!--           overflow: auto;-->
+<!--           vertical-align: top;-->
+<!--           resize: none;-->
+<!--      }-->
+
+<!--      [placeholder]::-webkit-input-placeholder { color: rgba(255,255,255,.8); }-->
+<!--      [placeholder]:hover::-webkit-input-placeholder { color: rgba(255,255,255,.4); }-->
+<!--      [placeholder]:focus::-webkit-input-placeholder { color: transparent; }-->
+
+<!--      [placeholder]::-moz-placeholder { color: rgba(255,255,255,.8); }-->
+<!--      [placeholder]:hover::-moz-placeholder { color: rgba(255,255,255,.4); }-->
+<!--      [placeholder]:focus::-moz-placeholder { color: transparent; }-->
+
+<!--      [placeholder]:-ms-input-placeholder { color: rgba(255,255,255,.8); }-->
+<!--      [placeholder]:hover:-ms-input-placeholder { color: rgba(255,255,255,.4); }-->
+<!--      [placeholder]:focus:-ms-input-placeholder { color: transparent; }-->
+
+<!--      form {-->
+<!--          width: 400px;-->
+<!--          margin: 50px auto;-->
+<!--      }-->
+
+<!--      input[type="text"] {-->
+<!--            display: block;-->
+<!--            width: 400px;-->
+<!--            margin: 0 0 20px;-->
+<!--            padding: 8px 12px 10px 12px;-->
+<!--            border: 1px solid rgba(0,0,0,.5);-->
+<!--            background: rgba(0,0,0,.25);-->
+<!--      }-->
+
+<!--      textarea {-->
+<!--              display: block;-->
+<!--              width: 400px;-->
+<!--              height: 150px;-->
+<!--              margin: 0 0 20px;-->
+<!--              padding: 8px 12px 10px 12px;-->
+<!--              border: 1px solid rgba(0,0,0,.5);-->
+<!--              background: rgba(0,0,0,.25);-->
+<!--      }-->
+
+<!--      .radio {-->
+<!--              position: relative;-->
+<!--              display: inline-block;-->
+<!--              margin: 0 20px 20px 0;-->
+<!--      }-->
+
+<!--      .radio input[type="radio"] {-->
+<!--              vertical-align: middle;-->
+<!--              opacity: 0;-->
+<!--      }-->
+
+<!--      .radio label {-->
+<!--              vertical-align: middle;-->
+<!--              cursor: pointer;-->
+<!--      }-->
+
+<!--      .radio input[type="radio"] + label:before {-->
+<!--              content: '';-->
+<!--              display: inline-block;-->
+<!--              width: 20px;-->
+<!--              height: 20px;-->
+<!--              margin: -3px 5px 0 -15px;-->
+<!--              vertical-align: middle;-->
+<!--              font-size: 14px;-->
+<!--              font-family: fontawesome;-->
+<!--              line-height: 19px;-->
+<!--              text-align: center;-->
+<!--              border: 1px solid rgba(0,0,0,.5);-->
+<!--              background: rgba(0,0,0,.25);-->
+<!--      }-->
+
+<!--      .radio input[type="radio"] + label:before {-->
+<!--              border-radius: 50%;-->
+<!--      }-->
+
+<!--      .radio input[type="radio"]:hover + label:before {-->
+<!--              content: '\f111';-->
+<!--              font-size: 9px;-->
+<!--              color: rgba(255,255,255,.4);-->
+<!--      }-->
+
+<!--      .radio input[type="radio"]:checked + label:before {-->
+<!--              content: '\f111';-->
+<!--              font-size: 9px;-->
+<!--              color: rgba(255,255,255,.8);-->
+<!--      }-->
+
+<!--      .radio .sex {-->
+<!--              font: 20px fontawesome;-->
+<!--      }-->
+
+<!--      input[type="submit"] {-->
+<!--              display: block;-->
+<!--              width: 150px;-->
+<!--              margin: 0 0 20px;-->
+<!--              padding: 8px 0 10px 0;-->
+<!--              text-align: center;-->
+<!--              border: 1px solid rgba(0,0,0,.5);-->
+<!--              background: rgba(0,0,0,.25);-->
+<!--      }-->
+<!--</style>-->
+<form>
+  {% csrf_token %}
+      <input type="text" placeholder="Name" name="name" style="
+    width: 200px;
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 10px;
+" />
+
+<input type="text" placeholder="Phone" name="phone" style="
+    width: 200px;
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 10px;
+" />
+
+<input type="submit" value="Send" style="
+    width: 100px;
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+" />
+
+</form>
 {% endblock main %}

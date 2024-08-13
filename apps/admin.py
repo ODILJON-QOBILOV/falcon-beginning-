@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import Product, Category, ProductImage, WishList
+from .models import Product, Category, ProductImage, WishList, Orders, User
 
 # Register your models here.
+
 
 
 
@@ -29,3 +30,11 @@ class ProductImageAdmin(admin.ModelAdmin):
 @admin.register(WishList)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['user']
+
+
+@admin.register(Orders)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['fullname', 'phone']
+
+
+admin.site.register(User)

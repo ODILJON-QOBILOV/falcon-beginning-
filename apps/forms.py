@@ -2,9 +2,10 @@ from apps.models import User
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.hashers import make_password
+from .models import Orders
 
 class UserRegisterForm(forms.ModelForm):
-    confirm_password = forms.CharField(max_length=255, widget=forms.PasswordInput)
+    confirm_password = forms.CharField(max_length=255, widget=forms.PasswordInput())
 
     class Meta:
         model = User
@@ -16,10 +17,15 @@ class UserRegisterForm(forms.ModelForm):
 
         if password and confirm_password and password != confirm_password:
             raise ValidationError('parollar mos emas!')
-        
-        return make_password(password) 
-    
+        print(password)
+        return make_password(password)
+
 
 class UserLoginForm(forms.Form):
     username = forms.CharField(max_length=255)
     password = forms.CharField(max_length=255, widget=forms.PasswordInput)
+
+class OrdersForm(forms.ModelForm):
+    class Meta:
+        model = Orders
+        fields = ['fullname', 'phone']

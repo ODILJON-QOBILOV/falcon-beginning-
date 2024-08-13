@@ -68,6 +68,11 @@ class WishList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.product.description
+
+
+class Orders(models.Model):
+    fullname = models.CharField(max_length=200)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    phone = models.IntegerField()
+
 
