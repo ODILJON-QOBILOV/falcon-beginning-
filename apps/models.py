@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.db import models
 from datetime import timedelta
 from django.utils.timezone import now
@@ -62,6 +63,15 @@ class User(AbstractUser):
     region = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=255, blank=True, null=True)
     street = models.CharField(max_length=255, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        send_mail(
+            subject='Welcome',
+            message='message to registeres user',
+            from_email='temirovv21@gmail.com',
+            recipient_list=[self.email],
+        )
 
 
 class WishList(models.Model):

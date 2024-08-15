@@ -1,3 +1,5 @@
+from django.core.mail import send_mail
+
 from apps.models import User
 from django import forms
 from django.core.exceptions import ValidationError
@@ -11,6 +13,7 @@ class UserRegisterForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'username', 'email', 'password', 'confirm_password']
 
+
     def clean_password(self):
         password = self.cleaned_data.get('password')
         confirm_password = self.cleaned_data.get('confirm_password')
@@ -20,6 +23,17 @@ class UserRegisterForm(forms.ModelForm):
         print(password)
         return make_password(password)
 
+
+    def save(self, commit=True):
+        print('shu yerda xato')
+        user = super().save(commit)
+        send_mail(
+            subject='Welcome',
+            message='message to registeres user',
+            from_email='temirovv21@gmail.com',
+            recipient_list=[user.email],
+        )
+        return user
 
 class UserLoginForm(forms.Form):
     username = forms.CharField(max_length=255)
