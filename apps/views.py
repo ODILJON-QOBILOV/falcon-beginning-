@@ -107,10 +107,11 @@ class UserLogoutView(View):
         return redirect('login')
 
 
-class WishlistTemplateView(ListView):
+class WishlistTemplateView(LoginRequiredMixin, ListView):
     template_name = 'product/shopping-cart.html'
     model = WishList
     context_object_name = 'products'
+    login_url = '/'
 
     def get_queryset(self):
         qs = super().get_queryset().filter(user=self.request.user)
@@ -118,6 +119,7 @@ class WishlistTemplateView(ListView):
 
 
 class WishListView(LoginRequiredMixin, View):
+    login_url = 'login'
     def get(self, request, *args, **kwargs):
         user = self.request.user
         pk = kwargs.get('pk')
